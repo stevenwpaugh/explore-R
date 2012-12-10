@@ -1,7 +1,13 @@
 #!/bin/bash
 
-grep SNP ${1} > ${1}.small
-awk '{print $2,$3,$4,$9,$10,$12}' ${1}.small > ${1}.process
+filename=$(basename "$1")
+extension="${filename##*.}"
+filename="${filename%.*}"
 
-tail -q -n+2 "${1}.process" >> "${1}.final"
+grep SNP ${1} > ${filename}.small
+awk '{print $2,$3,$4,$9,$10,$12}' ${filename}.small > ${filename}.process
 
+tail -q -n+2 "${filename}.process" >> "${filename}.final"
+
+rm ${filename}.small
+rm ${filename}.process
