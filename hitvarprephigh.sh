@@ -5,7 +5,7 @@ extension="${filename##*.}"
 filename="${filename%.*}"
 
 grep SNP ${1} > ${filename}.small
-awk '{print $2,$3,$4,$9,$10,$12}' ${filename}.small > ${filename}.process
+awk '{print $3,$4,$5,$10,$11,$13}' ${filename}.small > ${filename}.process
 
 tail -q -n+2 "${filename}.process" >> "${filename}.final"
 
