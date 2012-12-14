@@ -26,6 +26,6 @@ log=`echo ${file} | sed -e 's/\.\///'`
 #echo ${file2}
 #echo ${file3}
 
-bsub -P $project -q ${queue} -J ${timestamp}_${log} -oo "log/${timestamp}_${log}.o" -R "rusage[mem=8000]" sorter.sh $file1 $file2 $file3
+bsub -P $project -q ${queue} -J ${timestamp}_${log} -oo "log/${timestamp}_${log}.o" -R "rusage[mem=8000]" ./sorter.sh $file1 $file2 $file3
 
 done
