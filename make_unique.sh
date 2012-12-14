@@ -10,17 +10,22 @@ wd=${1}
 
 echo $timestamp
 
-files=`ls ${wd}/*_G_bam.final | sed -e 's/_G_bam.final//'`
+#files=`
 
-for file in "${files[@]}"
+#echo ${files}
+
+for file in `ls ${wd}/*_G_bam.final | sed -e 's/_G_bam.final//'`
 do
 
 file1=${file}_G_bam.final
 file2=${file}_bam_high_20.final
-file3=${file}.merge
-file4=${file}.uniq
- 
+file3=${file}.uniq
+log=`echo ${file} | sed -e 's/\.\///'`
 
-echo bsub -P $project -q ${queue} -J ${timestamp}_${filename} -oo "log/${timestamp}_${filename}.o" -R "rusage[mem=8000]" sort -m $file1 $file2> $file3 | uniq > $file4
+#echo ${file1}
+#echo ${file2}
+#echo ${file3}
+
+bsub -P $project -q ${queue} -J ${timestamp}_${log} -oo "log/${timestamp}_${log}.o" -R "rusage[mem=8000]" sorter.sh $file1 $file2 $file3
 
 done
