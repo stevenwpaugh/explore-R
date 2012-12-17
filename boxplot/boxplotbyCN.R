@@ -51,7 +51,7 @@ ge.data
 
 #cn.data <- read.csv ("CNVData.csv", as.is=TRUE, stringsAsFactors=FALSE)
 
-load("20120509TALLMBRBmutdata.RData")
+load("../RData/20120509TALLMBRBmutdata.RData")
 #cn.data <- read.csv ("Mutation Data for TALL MB and RB - 5_9_12.csv", as.is=TRUE, stringsAsFactors=FALSE)
 
 #cn.data <- subset(cn.data, cn.data$Gene.Symbol == genesymbol)
@@ -77,12 +77,14 @@ cn.data
 
 
 if (diseases == "MB"){
-load ("mbanno.RData")
+load ("../RData/20121217mbanno.RData")
 pretty.name <- "MB"
+diseases <- gsub ("A", "G3", diseases)
+diseases <- gsub ("C", "G4", diseases)
 }
 
 if (diseases == "TALLETP"){
-load ("talletp.RData")
+load ("../RData/talletp.RData")
 pretty.name <- "T-ALL"
 }
 

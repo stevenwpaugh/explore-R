@@ -65,16 +65,16 @@ ge.data <- read.csv (paste("data/", diseasegroup, "/", substring(probeset.id, 1,
 }
 
 if (diseasegroup == "ALL"){
-load ("20120322gedata.RData")
+load ("../RData/20120322gedata.RData")
 }
 
 if (diseasegroup == "MB"){
 #load ("mbanno.RData")
-load ("20121217mbanno.RData")
+load ("../RData/20121217mbanno.RData")
 }
 
 if (diseasegroup == "TALLETP"){
-load ("talletp.RData")
+load ("../RData/talletp.RData")
 }
 
 ls()
