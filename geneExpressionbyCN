@@ -34,7 +34,7 @@ print OUTFILE "$_\n";
 close(OUTFILE);
 
 
-system ("./boxplotbyCN.sh $myid $disease $checksum $scale $genesymbol $showallpatients");
+system ("./boxplot/boxplotbyCN.sh $myid $disease $checksum $scale $genesymbol $showallpatients");
 
 
 #my @allDiseases = ("T-ALL", "ETV6");

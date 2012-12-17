@@ -51,7 +51,7 @@ close(OUTFILE);
 
 
 
-system ("./boxplot.sh $myid $diseaseSubType $checksum $scale $genesymbol $showallpatients $disease");
+system ("./boxplot/boxplot.sh $myid $diseaseSubType $checksum $scale $genesymbol $showallpatients $disease");
 
 #open(OUTFILE,">>../htdocs/geneExpression/Rimages/collect.txt");
 #print OUTFILE "$query\n";
