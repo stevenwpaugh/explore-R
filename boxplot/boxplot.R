@@ -53,8 +53,9 @@ diseases <- gsub ("C", "G4", diseases)
 }
 
 if (diseasegroup == "TALLETP"){
-diseaseorder <- as.data.frame(cbind(c("ETP", "T"), c(1:2)), as.is=TRUE, stringsAsFactors=FALSE)
-pretty.name <- "T-ALL vs. ETP" 
+diseaseorder <- as.data.frame(cbind(c("ETP", "T", "NON-ETP"), c(1:2)), as.is=TRUE, stringsAsFactors=FALSE)
+pretty.name <- "ETP vs NON-ETP"
+diseases[diseases == "T", ] <- "NON-ETP" 
 }
 
 
