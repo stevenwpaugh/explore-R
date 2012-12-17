@@ -45,9 +45,11 @@ pretty.name <- "ALL"
 }
 
 if (diseasegroup == "MB"){
-diseaseorder <- as.data.frame(cbind(c("WNT", "SHH", "A", "C", "U"), c(1:5)), as.is=TRUE, stringsAsFactors=FALSE)
+diseaseorder <- as.data.frame(cbind(c("WNT", "SHH", "A", "G3", "C", "G4", "U"), c(1:7)), as.is=TRUE, stringsAsFactors=FALSE)
 #diseaseorder <- as.data.frame(cbind(c("WNT", "SHH", "A", "N", "U(WNT)", "U(SHH)", "C", "U"), c(1:8)), as.is=TRUE, stringsAsFactors=FALSE)
 pretty.name <- "MB"
+diseases <- gsub ("A", "G3", diseases)
+diseases <- gsub ("C", "G4", diseases)
 }
 
 if (diseasegroup == "TALLETP"){
@@ -67,7 +69,8 @@ load ("20120322gedata.RData")
 }
 
 if (diseasegroup == "MB"){
-load ("mbanno.RData")
+#load ("mbanno.RData")
+load ("20121217mbanno.RData")
 }
 
 if (diseasegroup == "TALLETP"){
