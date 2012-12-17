@@ -20,9 +20,7 @@ my $showallpatients = $query->param('showAllPatients');
 my $scale = $query->param('scale');
 
 
-#my @foo = split("\0", $multivalue->{'disease'});
 
-#my $disease = join (",", @foo);
 my $disease = $query->param('disease');
 
 open(OUTFILE,">>../htdocs/geneExpressionbyCN/Rimages/collect.txt");
@@ -34,12 +32,10 @@ print OUTFILE "$_\n";
 close(OUTFILE);
 
 
-system ("./boxplot/boxplotbyCN.sh $myid $disease $checksum $scale $genesymbol $showallpatients");
+system ("./boxplotbyCN.sh $myid $disease $checksum $scale $genesymbol $showallpatients");
 
 
-#my @allDiseases = ("T-ALL", "ETV6");
 
-#system ("./boxplot.sh $FORM{probeSetId} $FORM{checksum}");
 
 open (MYFILE, 'leftpanel.txt');
 
@@ -48,16 +44,9 @@ print( STDOUT "Status: 200 Ok\r\n" );
 
 print( STDOUT "\r\n" );
 print( STDOUT "<html>\n<head></head><body>" );
-#print( STDOUT "$myid" );
-#print( STDOUT join(",", @foo) );
 
-#print map { $_ . " => " . param($_) . "\n" }
-#      param;
 
-#foreach (@allDiseases){
 
-#print( STDOUT "$_");
-#}
 
 while(<MYFILE>){
 	chomp;
