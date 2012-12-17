@@ -30,9 +30,12 @@ my $disease = join (",", @foo);
 
 $disease =~ s/\(/ /;
 
+#@foo2 =~ s/\(/ /;
+#@foo2 =~ s/\)/ /;
 
 my $diseaseSubType = join (",", @foo2);
 $diseaseSubType =~ tr/()//d;
+#$diseaseSubType =~ s/\)/ /;
 
 open(OUTFILE,">>../htdocs/geneExpression/Rimages/collect.txt");
 print OUTFILE "$disease\n";
@@ -40,15 +43,32 @@ print OUTFILE "$diseaseSubType\n";
 foreach (@names){
 print OUTFILE "$_\n";
 }
+print OUTFILE "testtesttest\n";
 close(OUTFILE);
 
 
 
 
-
-
-
 system ("./boxplot.sh $myid $diseaseSubType $checksum $scale $genesymbol $showallpatients $disease");
+
+
+#open(OUTFILE,">>../htdocs/geneExpression/Rimages/collect.txt");
+#print OUTFILE "$query\n";
+#foreach (@names){
+#print map { $_ . " => " . param($_) . "\n" }
+#      param;
+
+
+#print (OUTFILE "$_\n");
+#}
+#print OUTFILE "$disease\n";
+#print OUTFILE "$diseaseSubType\n";
+#close(OUTFILE);
+
+
+#my @allDiseases = ("T-ALL", "ETV6");
+
+#system ("./boxplot.sh $FORM{probeSetId} $FORM{checksum}");
 
 open (MYFILE, 'leftpanel.txt');
 
@@ -57,16 +77,25 @@ print( STDOUT "Status: 200 Ok\r\n" );
 
 print( STDOUT "\r\n" );
 print( STDOUT "<html>\n<head></head><body>" );
+#print( STDOUT "$myid" );
+#print( STDOUT join(",", @foo) );
 
+#print map { $_ . " => " . param($_) . "\n" }
+#      param;
+
+#foreach (@allDiseases){
+
+#print( STDOUT "$_");
+#}
 
 while(<MYFILE>){
 	chomp;
 	print (STDOUT "$_\n");
 }
 
-if ($myid != ""){
+#if ($myid != ""){
 print( STDOUT "<img src='../geneExpression/Rimages/$checksum.png'>" );
 
-}
+#}
 print( STDOUT "</body></html>" );
 close (MYFILE);
