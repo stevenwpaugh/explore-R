@@ -1,0 +1,72 @@
+#! /usr/bin/perl
+
+use warnings;
+use strict;
+
+use CGI qw/ :standard -debug /;
+
+my $query = CGI->new;
+my @names = $query -> param();
+
+my $myid = $query->param('probeSetId');
+
+my $checksum = $query->param('checksum');
+
+my $multivalue = $query->Vars;
+
+my $genesymbol = $query->param('geneSymbol');
+
+my $showallpatients = $query->param('showAllPatients');
+my $scale = $query->param('scale');
+
+
+#my @foo = split("\0", $multivalue->{'disease'});
+
+#my $disease = join (",", @foo);
+my $disease = $query->param('disease');
+
+open(OUTFILE,">>../htdocs/geneExpressionbyCN/Rimages/collect.txt");
+print OUTFILE "$disease\n";
+#print OUTFILE "$diseaseSubType\n";
+foreach (@names){
+print OUTFILE "$_\n";
+}
+close(OUTFILE);
+
+
+system ("./boxplotbyCN.sh $myid $disease $checksum $scale $genesymbol $showallpatients");
+
+
+#my @allDiseases = ("T-ALL", "ETV6");
+
+#system ("./boxplot.sh $FORM{probeSetId} $FORM{checksum}");
+
+open (MYFILE, 'leftpanel.txt');
+
+print( STDOUT "Content-Type:text/html\r\n" );
+print( STDOUT "Status: 200 Ok\r\n" );
+
+print( STDOUT "\r\n" );
+print( STDOUT "<html>\n<head></head><body>" );
+#print( STDOUT "$myid" );
+#print( STDOUT join(",", @foo) );
+
+#print map { $_ . " => " . param($_) . "\n" }
+#      param;
+
+#foreach (@allDiseases){
+
+#print( STDOUT "$_");
+#}
+
+while(<MYFILE>){
+	chomp;
+	print (STDOUT "$_\n");
+}
+
+if ($myid != ""){
+print( STDOUT "<img src='../geneExpressionbyCN/Rimages/$checksum.png'>" );
+
+}
+print( STDOUT "</body></html>" );
+close (MYFILE);
