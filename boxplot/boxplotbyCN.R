@@ -1,5 +1,6 @@
 args.orig <- commandArgs()
 args.orig
+setwd("/apps/apache2/cgi-bin/boxplot")
 set.seed (42)
 probeset.id <- gsub ("--", "", args.orig[9])
 diseases <- gsub ("--", "", args.orig[10])
@@ -44,7 +45,7 @@ diseases <- gsub ("T-ALL", "TALLETP", diseases)
 #load (paste("data/", substring(probeset.id, 1,2), "/", probeset.id, ".RData", sep=""))
 
 if (diseases %in% c("MB", "TALLETP")){
-ge.data <- read.csv (paste("data/", diseases, "/", substring(probeset.id, 1,2), "/", probeset.id, ".csv", sep=""), as.is=TRUE, stringsAsFactors=FALSE, row.names=1)
+ge.data <- read.csv (paste("../data/", diseases, "/", substring(probeset.id, 1,2), "/", probeset.id, ".csv", sep=""), as.is=TRUE, stringsAsFactors=FALSE, row.names=1)
 }
 
 ge.data
@@ -128,44 +129,44 @@ drawFigure <- function (x,y,scale,probeset.id,genesymbol,myshowall){
 ############
 
 if (scale == "log2"){
-png (file=paste ("../htdocs/geneExpressionbyCN/Rimages/", checksum, ".png", sep=""), width=1200, height=600)
+png (file=paste ("../../htdocs/geneExpressionbyCN/Rimages/", checksum, ".png", sep=""), width=1200, height=600)
 drawFigure (myx, myz, scale="log2", probeset.id, genesymbol, myshowall=showall)
 dev.off()
 
-pdf (file=paste ("../htdocs/geneExpressionbyCN/Rimages/", checksum, ".pdf", sep=""), width=18, height=9)
+pdf (file=paste ("../../htdocs/geneExpressionbyCN/Rimages/", checksum, ".pdf", sep=""), width=18, height=9)
 drawFigure (myx, myz, scale="log2", probeset.id, genesymbol, myshowall=showall)
 dev.off()
 
-svg(file=paste ("../htdocs/geneExpressionbyCN/Rimages/", checksum, ".svg", sep=""), width=18, height=9)
+svg(file=paste ("../../htdocs/geneExpressionbyCN/Rimages/", checksum, ".svg", sep=""), width=18, height=9)
 drawFigure (myx, myz, scale="log2", probeset.id, genesymbol, myshowall=showall)
 dev.off()
 }            
 
 
 if (scale == "lin"){
-png (file=paste ("../htdocs/geneExpressionbyCN/Rimages/", checksum, ".png", sep=""), width=1200, height=600)
+png (file=paste ("../../htdocs/geneExpressionbyCN/Rimages/", checksum, ".png", sep=""), width=1200, height=600)
 drawFigure (myx, myz, scale="lin", probeset.id, genesymbol, myshowall=showall)
 dev.off()
 
-pdf (file=paste ("../htdocs/geneExpressionbyCN/Rimages/", checksum, ".pdf", sep=""), width=18, height=9)
+pdf (file=paste ("../../htdocs/geneExpressionbyCN/Rimages/", checksum, ".pdf", sep=""), width=18, height=9)
 drawFigure (myx, myz, scale="lin", probeset.id, genesymbol, myshowall=showall)
 dev.off()
 
-svg(file=paste ("../htdocs/geneExpressionbyCN/Rimages/", checksum, ".svg", sep=""), width=18, height=9)
+svg(file=paste ("../../htdocs/geneExpressionbyCN/Rimages/", checksum, ".svg", sep=""), width=18, height=9)
 drawFigure (myx, myz, scale="lin", probeset.id, genesymbol, myshowall=showall)
 dev.off()
 }
 
 if (scale == "z-score"){
-png (file=paste ("../htdocs/geneExpressionbyCN/Rimages/", checksum, ".png", sep=""), width=1200, height=600)
+png (file=paste ("../../htdocs/geneExpressionbyCN/Rimages/", checksum, ".png", sep=""), width=1200, height=600)
 drawFigure (myx, myz, scale="z-scale", probeset.id, genesymbol, myshowall=showall)
 dev.off()
 
-pdf (file=paste ("../htdocs/geneExpressionbyCN/Rimages/", checksum, ".pdf", sep=""), width=18, height=9)
+pdf (file=paste ("../../htdocs/geneExpressionbyCN/Rimages/", checksum, ".pdf", sep=""), width=18, height=9)
 drawFigure (myx, myz, scale="z-scale", probeset.id, genesymbol, myshowall=showall)
 dev.off()
 
-svg(file=paste ("../htdocs/geneExpressionbyCN/Rimages/", checksum, ".svg", sep=""), width=18, height=9)
+svg(file=paste ("../../htdocs/geneExpressionbyCN/Rimages/", checksum, ".svg", sep=""), width=18, height=9)
 drawFigure (myx, myz, scale="z-scale", probeset.id, genesymbol, myshowall=showall)
 dev.off()
 }

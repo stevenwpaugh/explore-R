@@ -1,5 +1,7 @@
 args.orig <- commandArgs()
 args.orig
+getwd()
+setwd("/apps/apache2/cgi-bin/boxplot")
 set.seed(42)
 probeset.id <- gsub ("--", "", args.orig[9])
 diseases <- gsub ("--", "", args.orig[10])
@@ -53,7 +55,7 @@ diseases <- gsub ("C", "G4", diseases)
 }
 
 if (diseasegroup == "TALLETP"){
-diseaseorder <- as.data.frame(cbind(c("ETP", "T", "NON-ETP"), c(1:2)), as.is=TRUE, stringsAsFactors=FALSE)
+diseaseorder <- as.data.frame(cbind(c("ETP", "T", "NON-ETP"), c(1:3)), as.is=TRUE, stringsAsFactors=FALSE)
 pretty.name <- "ETP vs NON-ETP"
 diseases[diseases == "T", ] <- "NON-ETP" 
 }
@@ -62,7 +64,7 @@ diseases[diseases == "T", ] <- "NON-ETP"
 diseaseorder <- subset (diseaseorder, diseaseorder[,1] %in% diseases)
 
 if (diseasegroup %in% c("ALL", "MB", "TALLETP")){
-ge.data <- read.csv (paste("data/", diseasegroup, "/", substring(probeset.id, 1,2), "/", probeset.id, ".csv", sep=""), as.is=TRUE, stringsAsFactors=FALSE, row.names=1)
+ge.data <- read.csv (paste("../data/", diseasegroup, "/", substring(probeset.id, 1,2), "/", probeset.id, ".csv", sep=""), as.is=TRUE, stringsAsFactors=FALSE, row.names=1)
 }
 
 if (diseasegroup == "ALL"){
@@ -108,44 +110,44 @@ if(myshowall){ stripchart(x~y, add=TRUE, vert=TRUE, method="jitter", col=rgb(1,0
 ############
 
 if (scale == "log2"){
-png (file=paste ("../htdocs/geneExpression/Rimages/", checksum, ".png", sep=""), width=1200, height=600)
+png (file=paste ("../../htdocs/geneExpression/Rimages/", checksum, ".png", sep=""), width=1200, height=600)
 drawFigure (myx, myy, scale="log2", probeset.id, genesymbol, myshowall=showall)
 dev.off()
 
-pdf (file=paste ("../htdocs/geneExpression/Rimages/", checksum, ".pdf", sep=""), width=18, height=9)
+pdf (file=paste ("../../htdocs/geneExpression/Rimages/", checksum, ".pdf", sep=""), width=18, height=9)
 drawFigure (myx, myy, scale="log2", probeset.id, genesymbol, myshowall=showall)
 dev.off()
 
-svg(file=paste ("../htdocs/geneExpression/Rimages/", checksum, ".svg", sep=""), width=18, height=9)
+svg(file=paste ("../../htdocs/geneExpression/Rimages/", checksum, ".svg", sep=""), width=18, height=9)
 drawFigure (myx, myy, scale="log2", probeset.id, genesymbol, myshowall=showall)
 dev.off()
 }            
 
 
 if (scale == "lin"){
-png (file=paste ("../htdocs/geneExpression/Rimages/", checksum, ".png", sep=""), width=1200, height=600)
+png (file=paste ("../../htdocs/geneExpression/Rimages/", checksum, ".png", sep=""), width=1200, height=600)
 drawFigure (myx, myy, scale="lin", probeset.id, genesymbol, myshowall=showall)
 dev.off()
 
-pdf (file=paste ("../htdocs/geneExpression/Rimages/", checksum, ".pdf", sep=""), width=18, height=9)
+pdf (file=paste ("../../htdocs/geneExpression/Rimages/", checksum, ".pdf", sep=""), width=18, height=9)
 drawFigure (myx, myy, scale="lin", probeset.id, genesymbol, myshowall=showall)
 dev.off()
 
-svg(file=paste ("../htdocs/geneExpression/Rimages/", checksum, ".svg", sep=""), width=18, height=9)
+svg(file=paste ("../../htdocs/geneExpression/Rimages/", checksum, ".svg", sep=""), width=18, height=9)
 drawFigure (myx, myy, scale="lin", probeset.id, genesymbol, myshowall=showall)
 dev.off()
 }
 
 if (scale == "z-score"){
-png (file=paste ("../htdocs/geneExpression/Rimages/", checksum, ".png", sep=""), width=1200, height=600)
+png (file=paste ("../../htdocs/geneExpression/Rimages/", checksum, ".png", sep=""), width=1200, height=600)
 drawFigure (myx, myy, scale="z-score", probeset.id, genesymbol, myshowall=showall)
 dev.off()
 
-pdf (file=paste ("../htdocs/geneExpression/Rimages/", checksum, ".pdf", sep=""), width=18, height=9)
+pdf (file=paste ("../../htdocs/geneExpression/Rimages/", checksum, ".pdf", sep=""), width=18, height=9)
 drawFigure (myx, myy, scale="z-score", probeset.id, genesymbol, myshowall=showall)
 dev.off()
 
-svg(file=paste ("../htdocs/geneExpression/Rimages/", checksum, ".svg", sep=""), width=18, height=9)
+svg(file=paste ("../../htdocs/geneExpression/Rimages/", checksum, ".svg", sep=""), width=18, height=9)
 drawFigure (myx, myy, scale="z-score", probeset.id, genesymbol, myshowall=showall)
 dev.off()
 }
