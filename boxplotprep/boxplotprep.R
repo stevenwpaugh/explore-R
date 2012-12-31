@@ -11,5 +11,8 @@ for (i in 1:nrow(data)){
   probe.path <- substr(rownames(data)[i], 1, 2)
   
   dir.create(file.path("./HYPO", probe.path), showWarnings = FALSE)
-  write.csv (data[i,], file=paste("./HYPO/", probe.path, "/", rownames(data)[i], ".csv", sep=""))
+  clean.probe <- gsub ("/", "_", rownames(data)[i])
+  write.csv (data[i,], file=paste("./HYPO/", probe.path, "/", clean.probe, ".csv", sep=""))
 }
+
+
