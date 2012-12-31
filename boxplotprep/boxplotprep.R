@@ -6,8 +6,7 @@ rownames (data) <- data$ID_REF
 data$ID_REF <- NULL
 
   dir.create("./HYPO", showWarnings = FALSE)
-#for (i in 1:nrow(data)){
-for (i in 1:10){
+for (i in 1:nrow(data)){
   probe.path <- substr(rownames(data)[i], 1, 2)
   
   dir.create(file.path("./HYPO", probe.path), showWarnings = FALSE)
