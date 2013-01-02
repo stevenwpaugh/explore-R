@@ -54,7 +54,7 @@ diseases <- gsub ("A", "G3", diseases)
 diseases <- gsub ("C", "G4", diseases)
 }
 
-if (diseasegroup == "T-ALL"){
+if (diseasegroup %in% c("T-ALL", "TALLETP")){
 diseaseorder <- as.data.frame(cbind(c("ETP", "T", "NON-ETP", "non-ETP"), c(1:3)), as.is=TRUE, stringsAsFactors=FALSE)
 pretty.name <- "ETP vs NON-ETP"
 diseases[diseases == "T"] <- "non-ETP" 
@@ -66,7 +66,8 @@ str (diseases)
 
 diseaseorder <- subset (diseaseorder, diseaseorder[,1] %in% diseases)
 
-if (diseasegroup %in% c("ALL", "MB", "T-ALL")){
+if (diseasegroup %in% c("ALL", "MB", "T-ALL", "TALLETP")){
+diseasegroup <- gsub ("TALLETP", "T-ALL", diseasegroup)
 ge.data <- read.csv (paste("../data/", diseasegroup, "/", substring(probeset.id, 1,2), "/", probeset.id, ".csv", sep=""), as.is=TRUE, stringsAsFactors=FALSE, row.names=1)
 }
 
@@ -79,7 +80,7 @@ if (diseasegroup == "MB"){
 load ("../RData/20121217mbanno.RData")
 }
 
-if (diseasegroup == "T-ALL"){
+if (diseasegroup %in% c("T-ALL", "TALLETP")){
 load ("../RData/talletp.RData")
 pt.anno[pt.anno$Subtype == "T","Subtype"] <- "non-ETP"
 }
