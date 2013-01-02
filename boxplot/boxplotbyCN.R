@@ -44,7 +44,8 @@ diseases <- gsub ("T-ALL", "TALLETP", diseases)
 
 #load (paste("data/", substring(probeset.id, 1,2), "/", probeset.id, ".RData", sep=""))
 
-if (diseases %in% c("MB", "TALLETP")){
+if (diseases %in% c("MB", "T-ALL", "TALLETP")){
+diseases <- gsub ("TALLETP", "T-ALL", diseases)
 ge.data <- read.csv (paste("../data/", diseases, "/", substring(probeset.id, 1,2), "/", probeset.id, ".csv", sep=""), as.is=TRUE, stringsAsFactors=FALSE, row.names=1)
 }
 
@@ -84,7 +85,7 @@ diseases <- gsub ("A", "G3", diseases)
 diseases <- gsub ("C", "G4", diseases)
 }
 
-if (diseases == "TALLETP"){
+if (diseases %in% c("T-ALL", "TALLETP")){
 load ("../RData/talletp.RData")
 pretty.name <- "T-ALL"
 }
