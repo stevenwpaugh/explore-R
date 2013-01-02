@@ -54,16 +54,19 @@ diseases <- gsub ("A", "G3", diseases)
 diseases <- gsub ("C", "G4", diseases)
 }
 
-if (diseasegroup == "TALLETP"){
-diseaseorder <- as.data.frame(cbind(c("ETP", "T", "NON-ETP"), c(1:3)), as.is=TRUE, stringsAsFactors=FALSE)
+if (diseasegroup == "T-ALL"){
+diseaseorder <- as.data.frame(cbind(c("ETP", "T", "NON-ETP", "non-ETP"), c(1:3)), as.is=TRUE, stringsAsFactors=FALSE)
 pretty.name <- "ETP vs NON-ETP"
-diseases[diseases == "T", ] <- "NON-ETP" 
+diseases[diseases == "T"] <- "non-ETP" 
 }
 
+diseases
+
+str (diseases)
 
 diseaseorder <- subset (diseaseorder, diseaseorder[,1] %in% diseases)
 
-if (diseasegroup %in% c("ALL", "MB", "TALLETP")){
+if (diseasegroup %in% c("ALL", "MB", "T-ALL")){
 ge.data <- read.csv (paste("../data/", diseasegroup, "/", substring(probeset.id, 1,2), "/", probeset.id, ".csv", sep=""), as.is=TRUE, stringsAsFactors=FALSE, row.names=1)
 }
 
@@ -76,10 +79,11 @@ if (diseasegroup == "MB"){
 load ("../RData/20121217mbanno.RData")
 }
 
-if (diseasegroup == "TALLETP"){
+if (diseasegroup == "T-ALL"){
 load ("../RData/talletp.RData")
+pt.anno[pt.anno$Subtype == "T","Subtype"] <- "non-ETP"
 }
-
+pt.anno
 ls()
 
 #myx <- unlist(ge.data[1,])
