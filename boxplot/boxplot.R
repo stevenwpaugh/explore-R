@@ -12,11 +12,6 @@ showall <- gsub ("--", "", args.orig[14])
 diseasegroup <- gsub ("--", "", args.orig[15])
 diseasegroup
 
-if (diseasegroup == "TALLETP"){
-#probeset.id <- "1007_PM_s_at"
-#pretty.name <- "ETP vs. T-ALL"
-}
-
 showall
 #showall <- as.logical (showall)
 
@@ -60,14 +55,30 @@ pretty.name <- "ETP vs NON-ETP"
 diseases[diseases == "T"] <- "non-ETP" 
 }
 
+if (diseasegroup == "HYPO"){
+#pdf (file=paste ("../../htdocs/geneExpression/Rimages/", checksum, ".pdf", sep=""), width=18, height=9)
+diseaseorder <- as.data.frame(cbind(c("LH", "MLH", "G3", "G4", "U"), c(1:5)), as.is=TRUE, stringsAsFactors=FALSE)
+#boxplot(1:5~diseaseorder[,1])
+#dev.off()
+#png (file=paste ("../../htdocs/geneExpression/Rimages/", checksum, ".png", sep=""), width=1200, height=600)
+#boxplot(1:5~diseaseorder[,1])
+#dev.off()
+#q(save="no")
+#probeset.id <- "1007_PM_s_at"
+#pretty.name <- "ETP vs. T-ALL"
+}
+
+
 diseases
 
 str (diseases)
 
 diseaseorder <- subset (diseaseorder, diseaseorder[,1] %in% diseases)
 
-if (diseasegroup %in% c("ALL", "MB", "T-ALL", "TALLETP")){
+if (diseasegroup %in% c("ALL", "MB", "T-ALL", "TALLETP", "HYPO")){
 diseasegroup <- gsub ("TALLETP", "T-ALL", diseasegroup)
+clean.probe <- gsub ("/", "_", probeset.id)
+probeset.id <- clean.probe
 ge.data <- read.csv (paste("../data/", diseasegroup, "/", substring(probeset.id, 1,2), "/", probeset.id, ".csv", sep=""), as.is=TRUE, stringsAsFactors=FALSE, row.names=1)
 }
 
@@ -84,10 +95,29 @@ if (diseasegroup %in% c("T-ALL", "TALLETP")){
 load ("../RData/talletp.RData")
 pt.anno[pt.anno$Subtype == "T","Subtype"] <- "non-ETP"
 }
+
+if (diseasegroup == "HYPO"){
+load ("../RData/20130109_Hypo.RData")
+
+#pdf (file=paste ("../../htdocs/geneExpression/Rimages/", checksum, ".pdf", sep=""), width=18, height=9)
+#diseaseorder <- as.data.frame(cbind(c("LH", "MLH", "G3", "G4", "U"), c(1:5)), as.is=TRUE, stringsAsFactors=FALSE)
+#boxplot(1:5~diseaseorder[,1])
+#dev.off()
+#png (file=paste ("../../htdocs/geneExpression/Rimages/", checksum, ".png", sep=""), width=1200, height=600)
+#boxplot(1:5~diseaseorder[,1])
+#dev.off()
+#q(save="no")
+#probeset.id <- "1007_PM_s_at"
+pretty.name <- "Hypodiploid"
+}
+
+
 pt.anno
 ls()
 
 #myx <- unlist(ge.data[1,])
+colnames(ge.data)
+
 pt.int <- intersect (colnames (ge.data), pt.anno$PCGP_ID)
 myx <- unlist (ge.data[1,pt.int])
 
