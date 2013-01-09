@@ -90,7 +90,7 @@ pt.anno[pt.anno$Subtype == "T","Subtype"] <- "non-ETP"
 }
 
 if (diseasegroup == "HYPO"){
-load ("../RData/20130109_Hypo.RData")
+load ("../RData/20130109_Hypo_v2.RData")
 ge.data[1,] <- 2^ge.data[1,]
 }
 
