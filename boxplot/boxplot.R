@@ -50,9 +50,10 @@ diseases <- gsub ("C", "G4", diseases)
 }
 
 if (diseasegroup %in% c("T-ALL", "TALLETP")){
-diseaseorder <- as.data.frame(cbind(c("ETP", "T", "NON-ETP", "non-ETP"), c(1:3)), as.is=TRUE, stringsAsFactors=FALSE)
+diseaseorder <- as.data.frame(cbind(c("ETP", "T", "NON-ETP", "non-ETP"), c(1:4)), as.is=TRUE, stringsAsFactors=FALSE)
 pretty.name <- "ETP vs NON-ETP"
 diseases[diseases == "T"] <- "non-ETP" 
+diseases[diseases == "NON-ETP"] <- "non-ETP"
 }
 
 if (diseasegroup == "HYPO"){
@@ -90,6 +91,7 @@ pt.anno[pt.anno$Subtype == "T","Subtype"] <- "non-ETP"
 
 if (diseasegroup == "HYPO"){
 load ("../RData/20130109_Hypo.RData")
+ge.data[1,] <- 2^ge.data[1,]
 }
 
 pt.int <- intersect (colnames (ge.data), pt.anno$PCGP_ID)
