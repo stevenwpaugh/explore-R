@@ -56,16 +56,7 @@ diseases[diseases == "T"] <- "non-ETP"
 }
 
 if (diseasegroup == "HYPO"){
-#pdf (file=paste ("../../htdocs/geneExpression/Rimages/", checksum, ".pdf", sep=""), width=18, height=9)
 diseaseorder <- as.data.frame(cbind(c("LH", "MLH", "G3", "G4", "U"), c(1:5)), as.is=TRUE, stringsAsFactors=FALSE)
-#boxplot(1:5~diseaseorder[,1])
-#dev.off()
-#png (file=paste ("../../htdocs/geneExpression/Rimages/", checksum, ".png", sep=""), width=1200, height=600)
-#boxplot(1:5~diseaseorder[,1])
-#dev.off()
-#q(save="no")
-#probeset.id <- "1007_PM_s_at"
-#pretty.name <- "ETP vs. T-ALL"
 }
 
 
@@ -98,27 +89,11 @@ pt.anno[pt.anno$Subtype == "T","Subtype"] <- "non-ETP"
 
 if (diseasegroup == "HYPO"){
 load ("../RData/20130109_Hypo.RData")
-
-#pdf (file=paste ("../../htdocs/geneExpression/Rimages/", checksum, ".pdf", sep=""), width=18, height=9)
-#diseaseorder <- as.data.frame(cbind(c("LH", "MLH", "G3", "G4", "U"), c(1:5)), as.is=TRUE, stringsAsFactors=FALSE)
-#boxplot(1:5~diseaseorder[,1])
-#dev.off()
-#png (file=paste ("../../htdocs/geneExpression/Rimages/", checksum, ".png", sep=""), width=1200, height=600)
-#boxplot(1:5~diseaseorder[,1])
-#dev.off()
-#q(save="no")
-#probeset.id <- "1007_PM_s_at"
 pretty.name <- "Hypodiploid"
 }
 
-
-pt.anno
-ls()
-
-#myx <- unlist(ge.data[1,])
-colnames(ge.data)
-
 pt.int <- intersect (colnames (ge.data), pt.anno$PCGP_ID)
+pt.int
 myx <- unlist (ge.data[1,pt.int])
 
 pt.anno <- pt.anno[pt.anno$PCGP_ID %in% pt.int,]
