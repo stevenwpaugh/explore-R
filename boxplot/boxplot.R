@@ -57,6 +57,7 @@ diseases[diseases == "T"] <- "non-ETP"
 
 if (diseasegroup == "HYPO"){
 diseaseorder <- as.data.frame(cbind(c("LH", "MLH", "MNH", "ND", "NH"), c(1:5)), as.is=TRUE, stringsAsFactors=FALSE)
+pretty.name <- "Hypodiploid"
 }
 
 
@@ -89,7 +90,6 @@ pt.anno[pt.anno$Subtype == "T","Subtype"] <- "non-ETP"
 
 if (diseasegroup == "HYPO"){
 load ("../RData/20130109_Hypo.RData")
-pretty.name <- "Hypodiploid"
 }
 
 pt.int <- intersect (colnames (ge.data), pt.anno$PCGP_ID)
