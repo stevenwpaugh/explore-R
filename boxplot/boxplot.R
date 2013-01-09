@@ -56,7 +56,7 @@ diseases[diseases == "T"] <- "non-ETP"
 }
 
 if (diseasegroup == "HYPO"){
-diseaseorder <- as.data.frame(cbind(c("LH", "MLH", "G3", "G4", "U"), c(1:5)), as.is=TRUE, stringsAsFactors=FALSE)
+diseaseorder <- as.data.frame(cbind(c("LH", "MLH", "MNH", "ND", "NH"), c(1:5)), as.is=TRUE, stringsAsFactors=FALSE)
 }
 
 
@@ -95,12 +95,12 @@ pretty.name <- "Hypodiploid"
 pt.int <- intersect (colnames (ge.data), pt.anno$PCGP_ID)
 pt.int
 myx <- unlist (ge.data[1,pt.int])
-
+myx
 pt.anno <- pt.anno[pt.anno$PCGP_ID %in% pt.int,]
 rownames (pt.anno) <- pt.anno$PCGP_ID
 pt.anno <- pt.anno[pt.int,]
 myy <- factor(pt.anno$Subtype, levels=diseaseorder[,1], ordered=TRUE)
-
+myy
 ##########
 drawFigure <- function (x,y,scale,probeset.id,genesymbol, myshowall){
   if (scale=="log2"){
